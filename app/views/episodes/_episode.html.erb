@@ -1,8 +1,6 @@
 <div class="episode">
   <div class="side">
-    <div class="number">#<%= episode.position %></div>
-    <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
-    <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode_path(:id => episode, :anchor => 'comments') %></div>
+    
     <% if admin? %>
     <div class="actions">
       <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
@@ -11,8 +9,26 @@
     <% end %>
   </div>
   <div class="main">
-    <h2><%= link_to_unless_current h(episode.name), episode %></h2>
+    <h2><%= link_to_episode episode %></h2>
     <div class="description"><%=h episode.description %></div>
+    <object width="635" height="480"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=1129235&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=1129235&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="635" height="480"></embed></object><br /><a href="http://vimeo.com/1129235">Steven harrington</a> from <a href="http://vimeo.com/mariep">milom</a> on <a href="http://vimeo.com">Vimeo</a>.
+    
+    <div class="download">
+      <% if episode.mov %>
+        <%= link_to "Téléchargement", episode.mov.url %>
+        <span class="stats">
+          (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.mov.duration %>)
+        </span>
+      <% end %>
+      <% if episode.m4v %>
+        <div class="alt_download">
+          <%= link_to "Autre téléchargement", episode.m4v.url %> pour iPod et Apple TV
+          <span class="stats">
+            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.m4v.duration %>)
+          </span>
+        </div>
+      <% end %>
+    </div>
     <% unless episode.tags.empty? %>
       <div class="tags">
         Tags:
@@ -21,22 +37,7 @@
         <% end %>
       </div>
     <% end %>
-    <div class="download">
-      <% if episode.mov %>
-        <%= link_to "Download", episode.mov.url %>
-        <span class="stats">
-          (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.mov.duration %>)
-        </span>
-      <% end %>
-      <% if episode.m4v %>
-        <div class="alt_download">
-          <%= link_to "alternative download", episode.m4v.url %> for iPod &amp; Apple TV
-          <span class="stats">
-            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.m4v.duration %>)
-          </span>
-        </div>
-      <% end %>
-    </div>
+    <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'commentaire'), episode_path(:id => episode, :anchor => 'comments') %></div>
     <%= yield if block_given? %>
   </div>
 </div>

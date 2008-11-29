@@ -1,12 +1,5 @@
 <% title "Screencasts Ruby on Rails gratuit ", false %>
 
-<% form_tag episodes_path, :method => 'get' do %>
-  <p class="content">
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Recherche", :name => nil %>
-  </p>
-<% end %>
-
 <% if @episodes.empty? %>
   <p class="content">Aucun épisodes trouvés. <%= link_to "Voir tous les épisodes.", episodes_path %></p>
 <% else %>

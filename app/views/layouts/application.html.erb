@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Railscasts.fr - <%= h(yield(:title) || "Screencasts Ruby on Rails gratuit") %></title>
@@ -13,7 +13,19 @@
   </head>
   <body>
     <div id="container">
+      <div id="topbar">
+        <%= link_to_unless_current "A propos", about_path %> <span>|</span> 
+        <%= link_to_unless_current "Episodes récents", root_path %> <span>| </span>
+        <%= link_to_unless_current "Tous les épisodes", archive_episodes_path %> <span>|</span> 
+        <%= link_to_unless_current "Commentaires récent", comments_path %>
+        
+        <a href="#" id="etrangelabs">étrange Labs</a>
+      </div>
       <div id="logo"><%= link_to_unless_current image_tag('logo.png', :size => '452x88', :alt => 'Railscasts'), root_path %></div>
+      <ul id="feeds">
+        <li id="rss-feed"><a href="#">RSS</a></li>
+        <li id="itunes-feed"><a href="#">Itunes</a></li>
+      </ul>
       <div id="main">
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -25,10 +37,10 @@
         
         <%= yield %>
       </div>
-      <div id="side">
-        <%= yield(:side) || render(:partial => 'shared/side') %>
-      </div>
       <div class="clear"></div>
+      <div id="footer">
+        <%= render :partial => 'shared/footer' %>
+      </div>
     </div>
   </body>
 </html>

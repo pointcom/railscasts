@@ -4,4 +4,10 @@ module EpisodesHelper
     prefix = "episode[#{new_or_existing}_download_attributes][]"
     fields_for(prefix, download, &block)
   end
+  
+  def link_to_episode(episode)
+    text =  "##{episode.position} "
+    text << h(episode.name)
+    link_to_unless_current text, episode
+  end
 end

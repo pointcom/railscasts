@@ -1,16 +1,26 @@
-set :application, "railscasts.com"
-role :app, application
-role :web, application
-role :db,  application, :primary => true
+require 'highline/import' 
 
-set :user, "deploy"
-set :deploy_to, "/var/www/apps/#{application}"
-set :deploy_via, :remote_cache
+# Application
+set :application, "railscastsfr"
+
+# Server
+set :user,        "victor"
+set :deploy_to,   "/usr/local/var/www/www.railscasts.fr"
 set :use_sudo, false
 
+# Git
+set :repository, "pointcom@railscasts.fr:/usr/local/opt/git/#{application}.git"
 set :scm, "git"
-set :repository, "git://github.com/ryanb/railscasts.git"
 set :branch, "master"
+
+# Thin
+set :thin_server_conf, "#{shared_path}/config/thin_conf.yml" 
+
+# Roles
+role :app, "railscasts.fr"
+role :web, "railscasts.fr"
+role :db,  "railscasts.fr", :primary => true
+
 
 namespace :deploy do
   desc "Tell Passenger to restart."

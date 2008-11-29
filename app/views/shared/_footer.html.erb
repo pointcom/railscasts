@@ -1,0 +1,18 @@
+<div class="block">
+  <h4>Recherche</h4>
+  <% form_tag episodes_path, :method => 'get' do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Rechercher", :name => nil %>
+  <% end %>
+  
+</div>
+<div class="block">
+  <div id="tags">
+    <h4>Les tags</h4>
+  <% for tag in Tag.find(:all, :order => 'name') %>
+    <%= link_to h(tag.name), tag_path(tag) %>
+  <% end %>
+  </div>  
+</div>
+
+<div class="clear"></div>

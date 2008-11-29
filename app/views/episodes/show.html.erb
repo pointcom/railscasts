@@ -1,7 +1,7 @@
 <% title @episode.name, false %>
 
 <% content_tag :head do %>
-  <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= formatted_episode_url(@episode, :rss) %>" />
+  <link rel="alternate" type="application/rss+xml" title="Flux RSS des commentaires de l'épisode" href="<%= formatted_episode_url(@episode, :rss) %>" />
 <% end %>
 
 <div class="episodes">
@@ -11,10 +11,10 @@
     </div>
     <div id="episode_nav">
     <% unless @episode.first? %>
-      <div id="previous_episode"><%= link_to h('< Previous Episode'), @episode.higher_item %></div>
+      <div id="previous_episode"><%= link_to h('< Episode précédent'), @episode.higher_item %></div>
     <% end %>
     <% unless @episode.last_published? || @episode.last? %>
-      <div id="next_episode"><%= link_to h('Next Episode >'), @episode.lower_item %></div>
+      <div id="next_episode"><%= link_to h('Episode suivant >'), @episode.lower_item %></div>
     <% end %>
     </div>
     <div class="clear"></div>
@@ -23,7 +23,7 @@
 
 <% unless @episode.comments.empty? %>
   <h3 class="content" id="comment_count">
-    <%= link_to image_tag('icons/feed.gif', :alt => "RSS Feed for Episode Comments", :size => '16x16'), formatted_episode_path(@episode, :rss) %>
+    <%= link_to image_tag('icons/feed.gif', :alt => "Flux RSS pour les commentaires de l'épisode", :size => '16x16'), formatted_episode_path(@episode, :rss) %>
     <%= pluralize @episode.comments.size, 'comment' %>
   </h3>
   <div id="comments" class="content">
@@ -32,6 +32,6 @@
 <% end %>
 
 <div class="content add_comment">
-  <h3>Add your comment:</h3>
+  <h3>Ajouter votre commentaire :</h3>
   <%= render :partial => 'comments/form' %>
 </div>

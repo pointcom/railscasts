@@ -4,23 +4,3 @@
     <li><a href="#"><%= image_tag 'icons/itunes.gif', :alt => 'On iTunes', :size => '16x16' %> on iTunes</a></li>
   </ul>
 </div>
-<%= render :partial => 'shared/navigation' %>
-<div class="section">
-  <strong>Sponsorisé par :</strong>
-  <% for sponsor in Sponsor.active.sort_by { rand } %>
-    <div class="sponsor">
-      <%= link_to image_tag(sponsor.image_url, :alt => h(sponsor.name)), sponsor.site_url %>
-    </div>
-  <% end %>
-</div>
-<div class="section">
-  <strong>tags:</strong>
-  <ul id="tags">
-  <% for tag in Tag.find(:all, :order => 'name') %>
-    <li><%= link_to h(tag.name), tag_path(tag) %></li>
-  <% end %>
-  </ul>
-</div>
-<div class="section">
-  <strong>Si vous voulez m'aider :</strong>
-</div>

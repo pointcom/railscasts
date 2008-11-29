@@ -1,10 +1,10 @@
 require 'highline/import' 
 
 # Application
-set :application, "railscastsfr"
+set :application, "railscasts"
 
 # Server
-set :user,        "victor"
+set :user,        "pointcom"
 set :deploy_to,   "/usr/local/var/www/www.railscasts.fr"
 set :use_sudo, false
 
@@ -23,16 +23,18 @@ role :db,  "railscasts.fr", :primary => true
 
 
 namespace :deploy do
-  desc "Tell Passenger to restart."
-  task :restart, :roles => :web do
-    run "touch #{deploy_to}/current/tmp/restart.txt" 
+  task :restart, :roles => :app do
+    run "thin restart -C #{thin_server_conf}"
   end
   
-  desc "Do nothing on startup so we don't get a script/spin error."
-  task :start do
-    puts "You may need to restart Apache."
+  task :start, :roles => :app do
+    run "thin start -C #{thin_server_conf}"
   end
 
+  task :stop, :roles => :app do
+    run "thin stop -C #{thin_server_conf}"
+  end
+  
   desc "Symlink extra configs and folders."
   task :symlink_extras do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
@@ -56,7 +58,7 @@ namespace :deploy do
   
   desc "Sync the public/assets directory."
   task :assets do
-    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts.com/shared/"
+    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@railscasts.fr:/usr/local/var/www/www.railscasts.fr/shared/"
   end
 end
 

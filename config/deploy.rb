@@ -9,7 +9,7 @@ set :deploy_to,   "/usr/local/var/www/www.railscasts.fr"
 set :use_sudo, false
 
 # Git
-set :repository, "pointcom@railscasts.fr:/usr/local/opt/git/#{application}.git"
+set :repository, "git://github.com/pointcom/railscasts.git"
 set :scm, "git"
 set :branch, "master"
 

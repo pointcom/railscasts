@@ -1,17 +1,17 @@
-title = "Railscasts"
-author = "Ryan Bates"
-description = "Every week you will be treated to a new Railscasts episode featuring tips and tricks with Ruby on Rails, the popular web development framework. These screencasts are short and focus on one technique so you can quickly move on to applying it to your own project. The topics are geared toward the intermediate Rails developer, but beginners and experts will get something out of it as well."
-keywords = "rails, ruby on rails, free, screencasts, podcasts, tips, tricks, tutorials, training, programming, railscast"
+title = "Railscasts.fr"
+author = "Mathieu Fosse"
+description = "Chaque semaine un nouveau screencast gratuit sur les Trucs et astuces avec Ruby on Rails."
+keywords = "rails, ruby on rails, gratuit, screencasts, podcasts, astuces, tutoriels, training, programming, railscast"
 
 if params[:ipod]
-  title += " (iPod & Apple TV)"
-  description += " This version is for the iPod or Apple TV, a full resolution version is also available."
+  title += " (iPod et Apple TV)"
+  description += " Cette version est pour iPod ou Apple TV, une version avec une résolution plus importante et également disponible."
   keywords += ', ipod'
-  image = "http://railscasts.com/images/ipod_railscasts_cover.jpg"
+  image = "http://railscasts.fr/images/ipod_railscasts_cover.jpg"
   format = 'm4v'
 else
-  description += " This is the full resolution version, an iPod specific format is also available."
-  image = "http://railscasts.com/images/railscasts_cover.jpg"
+  description += " C'est la version ayant la plus grande résolution, un format pour iPod est également disponible."
+  image = "http://railscasts.fr/images/railscasts_cover.jpg"
   format = 'mov'
 end
 
@@ -19,9 +19,9 @@ end
 xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:media" => "http://search.yahoo.com/mrss/",  :version => "2.0" do
   xml.channel do 
     xml.title title
-    xml.link 'http://railscasts.com'
+    xml.link 'http://railscasts.fr'
     xml.description description
-    xml.language 'en'
+    xml.language 'fr'
     xml.pubDate @episodes.first.published_at.to_s(:rfc822)
     xml.lastBuildDate @episodes.first.published_at.to_s(:rfc822)
     xml.itunes :author, author
@@ -30,7 +30,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
     xml.itunes :image, :href => image
     xml.itunes :owner do
       xml.itunes :name, author
-      xml.itunes :email, 'ryan@railscasts.com'
+      xml.itunes :email, 'mathieu.fosse@yeastymobs.com'
     end
     xml.itunes :block, 'no'
     xml.itunes :category, :text => 'Technology' do

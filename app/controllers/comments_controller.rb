@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
   
   def new
-    flash[:notice] = "To submit a comment, please go to a specific episode first."
+    flash[:notice] = "Pour ajouter un commentaire, veuillez selectionner tout d'abord un épisode."
     redirect_to root_url
   end
   
@@ -19,13 +19,13 @@ class CommentsController < ApplicationController
     if params[:preview_button].nil? && params[:not_spam] && params[:email].blank? # fake email to catch spammers
       @comment.request = request
       if @comment.save
-        flash[:notice] = "Successfully created comment."
+        flash[:notice] = "Commentaire créé avec succès."
         redirect_to @comment.episode
       else
         render :action => 'new'
       end
     else
-      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com." unless params[:preview_button]
+      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: mathieu [at] yeastymobs [dot] com." unless params[:preview_button]
       render :action => 'new'
     end
   end

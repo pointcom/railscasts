@@ -1,7 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :episode, :counter_cache => true
-  
-  validates_presence_of :name, :content, :episode_id
+  validates_presence_of :name, :content, :episode_id, :message => 'ne peut pas être vide !'
   
   named_scope :recent, :order => "created_at DESC"
   

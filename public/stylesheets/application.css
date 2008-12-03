@@ -19,6 +19,18 @@ a img {
   border: none;
 }
 
+#flash_notice {
+	background-color:#A6FF33;
+	color:#000000;
+	margin-bottom:20px;
+	padding:10px;
+}
+
+#errorExplanation {
+	background-color:#BE4545;
+	color:#EEEEEE;
+	padding:10px;
+}
 
 #container {
 	position:relative;
@@ -125,6 +137,17 @@ a img {
 
 .comments_count {
 	text-align:right;
+}
+
+#comments hr {
+	background-color:#EEE;
+	border:none;
+	margin-bottom:30px;
+}
+
+.comment_content {
+	background-color:#EEE;
+	padding:5px 10px;
 }
 
 .clear {clear:both;}

@@ -90,6 +90,7 @@ a img {
 	height:62px;
 	width:134px;
 	text-indent:-9999px;
+	overflow:hidden;
 }
 
 #rss-feed a {

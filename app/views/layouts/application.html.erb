@@ -23,7 +23,7 @@
       <div id="logo"><%= link_to_unless_current image_tag('logo.png', :size => '411x85', :alt => 'Railscasts'), root_path %></div>
       <ul id="feeds">
         <li id="rss-feed"><%= link_to "RSS", formatted_episodes_url(:rss)%></li>
-        <!-- <li id="itunes-feed"><a href="#">Itunes</a></li> -->
+        <li id="itunes-feed"><a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=299047040" title="Railscasts.fr sur Itunes">Itunes</a></li>
       </ul>
       <div id="main">
         <%- flash.each do |name, msg| -%>

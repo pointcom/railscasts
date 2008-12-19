@@ -11,7 +11,15 @@
   <div class="main">
     <h2><%= link_to_episode episode %></h2>
     <div class="description"><%=h episode.description %></div>
-    <object width="635" height="480"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=<%= episode.vimeo_id %>&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=<%= episode.vimeo_id %>&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="635" height="480"></embed></object>
+    <div id="flash-episode-<%= episode.position %>"><a href="http://www.macromedia.com/go/getflashplayer">Get the Flash Player</a> to see this player.</div>
+    <script type="text/javascript">
+  		var s1 = new SWFObject("/flash/player.swf","ply","635","500","9","#FFFFFF");
+  		s1.addParam("allowfullscreen","true");
+  		s1.addParam("allowscriptaccess","always");
+  		s1.addParam("flashvars","file=<%= episode.mov.url %>&image=preview.jpg");
+  		s1.write("flash-episode-<%= episode.position %>");
+  	</script>
+  	
     
     <div class="download">
       <% if episode.mov %>

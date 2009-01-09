@@ -16,7 +16,7 @@
   		var s1 = new SWFObject("/flash/player.swf","ply","635","500","9","#FFFFFF");
   		s1.addParam("allowfullscreen","true");
   		s1.addParam("allowscriptaccess","always");
-  		s1.addParam("flashvars","file=<%= episode.mov.url %>&image=preview.jpg");
+  		s1.addParam("flashvars","file=<%= episode.mov.url %>");
   		s1.write("flash-episode-<%= episode.position %>");
   	</script>
   	
